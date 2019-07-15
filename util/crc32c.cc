@@ -406,6 +406,8 @@ template __attribute__((target("sse4.2")))
 uint32_t ExtendImpl<Fast_CRC32>(uint32_t, const char*, size_t);
 #endif
 
+// Detect if ARM64 CRC or not.
+#ifndef HAVE_ARM64_CRC
 // Detect if SS42 or not.
 #ifndef HAVE_POWER8
 
@@ -442,6 +444,7 @@ static bool isPCLMULQDQ() {
 }
 
 #endif  // HAVE_POWER8
+#endif  // HAVE_ARM64_CRC
 
 typedef uint32_t (*Function)(uint32_t, const char*, size_t);
 
